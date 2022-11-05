@@ -19,11 +19,11 @@
     <section class="tables">
         <div class="container-fluid">
             <div class="row">
-                {{-- @if (Auth::user()->email=='admin@admin.com') --}}
+                @if (Auth::user()->email=='admin@admin.com')
                 <div class="col-sm">
                     <a class="btn btn-success" href="{{ route('produk.create') }}">Input Produk</a>
                 </div>
-                {{-- @endif --}}
+                @endif
                 
                 <div class="mx-auto pull-right">
                     <div class="float-left">
@@ -61,27 +61,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($product as $produk)
+                                @foreach ($alat_musiks as $alat_musik)
                                     <tr>
 
-                                        <td>{{ $produk->id }}</td>
-                                        <td>{{ $produk->name }}</td>
-                                        <td>{{ $produk->description }}</td>
-                                        <td><img width="100px" src="{{ asset('storage/' . $produk->image) }}"></td>
-                                        <td>Rp. {{ number_format($produk->price) }}</td>
+                                        <td>{{ $alat_musik->id }}</td>
+                                        <td>{{ $alat_musik->name }}</td>
+                                        <td>{{ $alat_musik->description }}</td>
+                                        <td><img width="100px" src="{{ asset('storage/' . $alat_musik->image) }}"></td>
+                                        <td>Rp. {{ number_format($alat_musik->price) }}</td>
                                         <td>
-                                            <form action="{{ route('produk.destroy', $produk->id) }}" method="POST"
+                                            <form action="{{ route('produk.destroy', $alat_musik->id) }}" method="POST"
                                                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus data barang?')">
                                                 <a class="btn btn-info"
-                                                    href="{{ route('produk.show', $produk->id) }}">Show</a>
-                                                    <a href="{{ url('pesan') }}/{{ $produk->id }}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Pesan</a>
-                                                    {{-- @if (Auth::user()->email=='admin@admin.com') --}}
+                                                    href="{{ route('produk.show', $alat_musik->id) }}">Show</a>
+                                                    <a href="{{ url('pesan') }}/{{ $alat_musik->id }}" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Pesan</a>
+                                                    @if (Auth::user()->email=='admin@admin.com')
                                                     <a class="btn btn-primary"
-                                                    href="{{ route('produk.edit', $produk->id) }}">Edit</a>
+                                                    href="{{ route('produk.edit', $alat_musik->id) }}">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Hapus</button>
-                                                    {{-- @endif --}}
+                                                    @endif
                                                 
                                             </form>
                                         </td>
@@ -91,14 +91,14 @@
                             </tbody>
                         </table>
                         
-                        {{-- {{ $product->links() }} --}}
+                        {{ $alat_musiks->links() }}
                         <!-- TARUH LINKS DISINI-->
-                        {{-- @if (Auth::user()->email=='admin@admin.com') --}}
-                        {{-- <br><br>
+                        {{-- @if (Auth::user()->email=='admin@admin.com')
+                        <br><br>
                         <div class="text-center my-2">
-                            <a href="{{ route('produk.cetak_pdf', $produk->id) }}" class="btn btn-warning">Cetak PDF</a>
-                            </div> --}}
-                        {{-- @endif --}}
+                            <a href="{{ route('produk.cetak_pdf', $alat_musiks->id) }}" class="btn btn-warning">Cetak PDF</a>
+                            </div>
+                        @endif --}}
                         
                     </div>
                 </div>
